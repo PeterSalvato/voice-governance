@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18986297.svg)](https://doi.org/10.5281/zenodo.18986297)
+
 # Voice Governance: Generation Constraints vs. Post-Hoc Filtering in AI-Mediated Writing
 
 *Why the Industry's Approach to Voice Produces Competent Text That Sounds Like No One*
