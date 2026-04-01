@@ -1,18 +1,23 @@
 # Voice Governance
 ### Generation Constraints vs. Post-Hoc Filtering in AI-Mediated Writing
 
+The first complete draft of this site was produced through conventional AI-assisted writing. Twenty-one project pages. Every one of them opened with an abstract concept before any real situation was established. "This project explores the intersection of..." on a page that should have said what broke and what I built to fix it. The pages were competent. Not one of them sounded like a person had written it.
+
+I found that applying voice rules during generation, not after, produces structurally different output. This paper documents a forty-rule protocol built from how I actually talk in conversation, not from how I write when I know someone is reading.
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18986297.svg)](https://doi.org/10.5281/zenodo.18986297)
 
+**Source:** [github.com/PeterSalvato/voice-governance](https://github.com/PeterSalvato/voice-governance)
 
 **Peter Salvato**
-Design Engineer | [petersalvato.com](https://petersalvato.com)
+Design Engineer | [petersalvato.com](https://petersalvato.com/)
 March 2026
 
 ---
 
 ## Abstract
 
-AI-generated text exhibits a consistent voice problem: competent prose that sounds like everyone else's competent prose. The industry's dominant approach treats voice as a post-generation concern: produce output, then check it against style guidelines, then revise. This paper argues that the generate-then-filter architecture is an accommodation failure, equivalent to letting a student attempt a compound task without scaffolding and then correcting their work. It proposes voice governance as a generation constraint architecture where codified rules, extracted from how the practitioner actually talks in unguarded conversation rather than from published writing, are applied during production. The paper presents a voice protocol developed over three years of applied practice, including forty discrete generation constraints, a voice extraction methodology using 2,300+ conversation transcripts as source material, and blind evaluation results where third-party assessment classified the output as human-written. It situates voice governance within the accommodation design framework (Salvato, 2026): the model's voice disability (defaulting to the statistical center of its training data) is accommodated by constraining generation to prevent the default patterns from activating, the same way a teacher scaffolds instruction to prevent processing failures before they occur.
+AI-generated text exhibits a consistent voice problem: competent prose that sounds like everyone else's competent prose. The industry's dominant approach treats voice as a post-generation concern: produce output, then check it against style guidelines, then revise. This paper argues that the generate-then-filter architecture is an accommodation failure, equivalent to letting a student attempt a compound task without scaffolding and then correcting their work. It proposes voice governance as a generation constraint architecture where codified rules, extracted from how the practitioner actually talks in unguarded conversation rather than from published writing, are applied during production. The paper presents a voice protocol developed over three years of applied practice, including forty discrete generation constraints, a voice extraction methodology using over 4,500 conversation transcripts as source material, and applied results where the output consistently reads as human-written under informal review. It situates voice governance within the accommodation design framework (Salvato, 2026): the model's voice disability (defaulting to the statistical center of its training data) is accommodated by constraining generation to prevent the default patterns from activating, the same way a teacher scaffolds instruction to prevent processing failures before they occur.
 
 ---
 
@@ -20,13 +25,9 @@ AI-generated text exhibits a consistent voice problem: competent prose that soun
 
 LLMs generate text from training data dominated by published writing: polished, performative, audience-aware. The statistical center of that data produces a specific voice: hedged, parallel, abstract-leading, em-dash-heavy, fortune-cookie-closing prose. Ask the model to write in a specific person's voice and it produces competent content marketing that sounds like everyone and no one.
 
-This is not a capability limitation. The model can generate text in virtually any style. The problem is that its default patterns are deeply embedded, and those defaults reassert themselves within paragraphs even when the model has been instructed to write differently. A paragraph that begins in a practitioner's voice drifts back to the statistical center by its third sentence. The default is gravitational.
+This is not a capability limitation. The model can generate text in virtually any style. The problem is that its default patterns are deeply embedded, and those defaults reassert themselves within paragraphs even when the model has been instructed to write differently. A paragraph that begins in a practitioner's voice drifts back to the statistical center by its third sentence. The pull is constant.
 
-I discovered this empirically. The first complete draft of petersalvato.com was produced through conventional AI-assisted writing: provide context, describe the desired voice, generate text, review and edit. Twenty-one project pages. Every one of them opened with an abstract concept before any real situation was established. "This project explores the intersection of..." on a page that should have said what broke and what I built to fix it.
-
-The pages were competent. None of them sounded like a person had written them.
-
-I tried the standard fixes. Longer style descriptions. More examples of the target voice. "Write like a practitioner, not a marketer." "Be direct and specific." "Sound like a real person." The model followed the instruction for a sentence, sometimes two, and then the defaults came back. Abstract openings. Mechanical parallelism. Three consecutive sections with identical skeleton structures. The gravitational pull of the training distribution was stronger than any style prompt.
+I tried the standard fixes. Longer style descriptions. More examples of the target voice. "Write like a practitioner, not a marketer." "Be direct and specific." "Sound like a real person." The model followed the instruction for a sentence, sometimes two, and then the defaults came back. Abstract openings. Mechanical parallelism. Three consecutive sections with identical skeleton structures. The pull of the training distribution was stronger than any style prompt I could write.
 
 
 ## 2. The Industry's Architecture
@@ -46,7 +47,7 @@ The academic approach trains or fine-tunes models on a corpus of the target writ
 
 ### 2.2 Persona Prompting
 
-"You are a senior design engineer with 25 years of experience." The model generates a caricature. It performs confidence, uses jargon, and structures its responses the way it predicts a senior design engineer would structure them. Change the persona label and the output changes less than you would expect. The persona is a costume. The voice underneath is the same.
+"You are a senior design engineer with 25 years of experience." The model generates a caricature. It performs confidence, uses jargon, and structures its responses the way it predicts a senior design engineer would structure them. Change the persona label and the output changes less than you would expect. The persona changes the surface. The underlying voice, the sentence structure, the rhythm, the way the model builds a paragraph, stays the same regardless of the label.
 
 ### 2.3 Controllable Generation
 
@@ -77,7 +78,7 @@ Generate-then-filter is the equivalent of giving a student a compound task, lett
 
 A teacher working with a student who has processing limitations does not say: "Write an essay. I will tell you what is wrong after you are done." The teacher scaffolds the production: provide the structure, constrain the approach, define success criteria before the work begins. The accommodation happens at the point of production, not at the point of review.
 
-Post-hoc voice correction is post-hoc accommodation. It does not work for the same reason post-hoc instruction does not work: the processing that produced the output already happened with the wrong architecture. Fixing the output does not fix the process.
+Post-hoc voice correction is post-hoc accommodation. It doesn't work for the same reason post-hoc instruction doesn't work: the processing that produced the output already happened with the wrong architecture. Fixing the output doesn't fix the process.
 
 
 ## 4. Voice Governance as Generation Constraint
@@ -104,18 +105,20 @@ I wrote a voice governance protocol in response to the copy failure. Codified ru
 
 When the model receives these constraints before generation begins, the output takes a different shape from the first token. The model routes around its defaults. It cannot open with an abstract concept because the rules prohibit it. It cannot close with a fortune-cookie because the rules prohibit it. It cannot fall into mechanical parallelism because the rules flag it.
 
-The constraints do not tell the model what to write. They tell the model what it cannot do. What remains after the prohibitions is the voice, because the defaults have been removed.
+The constraints don't tell the model what to write. They tell it what it can't do. Once the defaults are blocked, the model has to find another way to build the paragraph. That other way is closer to the target voice, because the most common failure modes have been taken off the table.
 
 
 ### 4.2 Voice Extraction From Conversation
 
-The source material for the protocol is not published writing. Published writing is performance. The practitioner has already edited, compressed, and shaped their thinking for an audience. Training on performance produces performed output.
+The source material for the protocol is conversation, because published writing is performance. The practitioner has already edited, compressed, and shaped their thinking for an audience. Training on performance produces performed output.
 
-The source material is the pour: conversation transcripts accumulated over three years across ChatGPT, Claude, and Gemini. Rough, unstructured, full of false starts. That is how I actually talk. This raw corpus is what the voice pipeline operates on. The pipeline extracts patterns from that material: sentence rhythm, how I start explaining something, vocabulary I reach for, what I never say.
+The source material is conversation transcripts accumulated over three years across ChatGPT, Claude, and Gemini. Rough, unstructured, full of false starts. That is how I actually talk. This raw corpus is what the voice pipeline operates on. The pipeline extracts patterns from that material: sentence rhythm, how I start explaining something, vocabulary I reach for, what I never say.
 
 Published writing says: "The methodology was developed through iterative refinement of governance patterns." Conversation says: "I kept losing things between sessions. Not the notes. The exact moment something clicked." The conversation version is the actual voice. The published version is what the voice sounds like after it has been cleaned up.
 
 Sampling from conversation instead of publication gives the model source material that matches the target register. The model is not imitating published prose. It is working from the patterns of actual speech, encoded as constraints.
+
+The extraction pipeline has two stages. The first samples how I talk in conversation: sentence rhythm, opening moves, vocabulary, transitions, emotional register. Raw observations, accumulated across sessions. The second converts those observations into operational generation rules organized by dimension: how sentences connect, how paragraphs open, where imagery comes from, how feeling enters the text. The protocol tells the model what it cannot do. The fingerprint tells it what I do. Both are loaded before generation begins.
 
 
 ### 4.3 The Structural Difference
@@ -124,7 +127,7 @@ When constraints are applied during generation, the model builds the paragraph a
 
 When constraints are applied after generation, the model builds the paragraph around its defaults and then tries to edit it. The bones are wrong. The structure was built to support abstraction-first, parallel, neatly-resolved prose. Changing the words does not change the bones.
 
-This is the accommodation insight. Constrain during generation, not filter after. The same text, produced under different architectural conditions, has a different structure. The constraints shape the production, not just the output.
+This is the accommodation insight. Constrain during generation, not filter after. The same text, produced under different architectural conditions, has a different structure. The paragraph that was built under constraints has different bones than the paragraph that was built freely and then edited to match.
 
 
 ## 5. Applied Evidence
@@ -137,17 +140,15 @@ Every page was rewritten under the voice protocol. Some pages took three passes 
 
 The same model, the same source material, the same project. The difference was the generation constraints. The constraints changed what the model could do, which changed the structure of what the model built, which changed whether a reader could hear a person in the text.
 
-### 5.2 Blind Evaluation
+### 5.2 Evaluation
 
-A blind third-party AI detection tool, with no knowledge that the copy was AI-assisted, classified the site as human-written across every page. The voice protocol constraints produced output that cleared an independent detection threshold designed to catch AI-generated text.
-
-The same model produces detectable AI-generated text without the protocol and undetectable text with it. The protocol is the variable. The model's capability did not change. The accommodation did.
+Informal review of the site's copy has consistently read as human-written rather than AI-assisted. No formal detection study has been conducted, but the contrast between constrained and unconstrained output from the same model is striking. The protocol is the variable. The model's capability did not change. The accommodation did.
 
 ### 5.3 What the Protocol Catches
 
 The protocol catches patterns that the writer cannot hear in their own copy. After reading twenty drafts, the em-dash frequency becomes invisible. The fortune-cookie closers sound fine. The mechanical parallelism feels like "good structure." The protocol makes the patterns visible by prohibiting them. When the model cannot use them, the writer can see what remains, and what remains is either specific and grounded or it is empty.
 
-The voice protocol is a diagnostic and a generation constraint simultaneously. It tells you what is wrong with the draft by preventing it from being wrong in those specific ways. If the constrained output is still flat, the problem is not the voice. The problem is the content.
+The voice protocol is a diagnostic and a generation constraint simultaneously. It tells you what is wrong with the draft by preventing it from being wrong in those specific ways. If the constrained output is still flat, the voice was never the issue. The content itself needs work.
 
 
 ## 6. Connection to Accommodation Design
@@ -183,24 +184,24 @@ The closest adjacent work is research on "AI slop" detection and mitigation, whi
 
 ## 8. Implications
 
-**Voice is not style.** Style is surface: word choice, sentence length, formality level. Voice is structural: what does this person lead with, what do they never tolerate, what is the relationship between the specific and the abstract, how do they use evidence. Style can be adjusted post-hoc. Voice cannot, because voice is embedded in the structure of the text, not its surface features.
+**Voice is not style.** Style is surface: word choice, sentence length, formality level. Voice is structural: what does this person lead with, what do they never tolerate, what's the relationship between the specific and the abstract, how do they use evidence. Style can be adjusted after the fact. Voice lives in the paragraph structure, and that structure is set during generation.
 
 Where should voice extraction sample from? Conversation. Published writing is performed. It has been edited for an audience. The patterns in conversation are the actual voice. The patterns in published writing are the voice after it has been filtered.
 
-The same model, the same content, the same prompt: output produced under voice constraints has a different paragraph structure than output produced without them and then edited. Generation constraints shape the bones. Post-hoc editing changes the skin.
+The same model, the same content, the same prompt: output produced under voice constraints has a different paragraph structure than output produced without them and then edited. The constraints reach the structure. Post-hoc editing only reaches the words.
 
-**The protocol is the IEP.** Decompose "sound like this person" into specific, testable rules. Give the model one constraint at a time. Scaffold the generation so the model can succeed. The accommodation must happen before and during production, not after. The design pattern is the same one that governs a classroom: make the requirements explicit before the work begins.
+**The protocol functions as an IEP.** Decompose "sound like this person" into specific, testable rules. Give the model one constraint at a time. Scaffold the generation so the model can succeed. The accommodation must happen before and during production, not after. The design pattern is the same one that governs a classroom: make the requirements explicit before the work begins.
 
 The accommodation principle generalizes beyond voice. Any AI processing tendency that degrades output quality can be addressed through generation constraints rather than post-hoc filtering. Voice is one application. The principle (constrain during, not filter after) applies to any dimension where the model's defaults produce suboptimal results and post-hoc correction fails to fix the underlying structure.
 
 
 ## 9. Conclusion
 
-The AI writing field is organized around a generate-then-filter architecture. Produce text, then check voice, then revise. This paper argues that the architecture is backwards. Voice constraints applied during generation produce structurally different output than the same constraints applied after generation. The difference is not cosmetic. The bones are different.
+The AI writing field is organized around a generate-then-filter architecture. Produce text, then check voice, then revise. This paper argues that the architecture is backwards. Voice constraints applied during generation produce structurally different output than the same constraints applied after generation. The difference is structural.
 
-Voice governance provides the generation constraint architecture: codified rules extracted from conversation, applied during production, preventing the model's default patterns from activating. The result is text that a third-party detection tool classified as human-written, produced by the same model that generates detectable AI text without the constraints.
+Voice governance provides the generation constraint architecture: codified rules extracted from conversation, applied during production, preventing the model's default patterns from activating. The result is text that consistently reads as human-written under informal review, produced by the same model that generates recognizably AI-flavored text without the constraints.
 
-The insight is accommodation design applied to voice. The model has a processing tendency (statistical center of training data). The tendency produces a specific harm (the human disappears). The accommodation (generation constraints, not post-hoc filters) is designed for the model's processing reality: give it explicit rules before it begins, the same way you give a student explicit scaffolding before they attempt the task. The accommodation happens at the point of production, where it can shape the structure. Not at the point of review, where it can only change the surface.
+The insight is accommodation design applied to voice. The model has a processing tendency (statistical center of training data). The tendency produces a specific harm (the human disappears). The accommodation (generation constraints, not post-hoc filters) is designed for the model's processing reality: give it explicit rules before it begins, the same way you give a student explicit scaffolding before they attempt the task. The accommodation has to happen during production. By the time you are reviewing output, the structure is already set, and changing words on top of the wrong structure does not fix it.
 
 ---
 
@@ -226,4 +227,4 @@ You are free to share and adapt this material for any purpose, including commerc
 
 ---
 
-*Peter Salvato is a design engineer based in Fort Lauderdale, FL. He studied Visual Communication at the School of Visual Arts, taught special education in Brooklyn, NY, and spent thirteen years building the front end of an enterprise recruiting platform. His AI governance work applies twenty-five years of practice across construction, print production, pedagogy, enterprise software, and brand systems to the question of what AI systems actually need to produce quality output. His work is published at [petersalvato.com](https://petersalvato.com).*
+*Peter Salvato is a design engineer based in Fort Lauderdale, FL. He studied Visual Communication at the School of Visual Arts, taught special education in Brooklyn, NY, and spent thirteen years building the front end of an enterprise recruiting platform. His AI governance work applies twenty-five years of practice across construction, print production, pedagogy, enterprise software, and brand systems to the question of what AI systems actually need to produce quality output. His work is published at [petersalvato.com](https://petersalvato.com/).*
